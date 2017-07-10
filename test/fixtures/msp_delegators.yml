@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  delegated_mvests: 1.5
+  blacklisted: false
+
+two:
+  username: MyString
+  delegated_mvests: 1.5
+  blacklisted: false
