@@ -26,7 +26,16 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://msp3k.herokuapp.com', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['MSP3K_SMTP_ADDDRESS'] || '',
+    port:                 587,
+    domain:               ENV['MSP3K_SMTP_DOMAIN'] || '',
+    user_name:            ENV['MSP3K_SMTP_USER'] || '',
+    password:             ENV['MSP3K_SMTP_PASSWORD'] || '',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

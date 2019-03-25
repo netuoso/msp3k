@@ -6,31 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Bot.create([
-  { :username => "centerlink" },
-  { :username => "minnowsupport" },
-  { :username => "msp-lovebot" },
-  { :username => "msp-africabot" },
-  { :username => "msp-creativebot" },
-  { :username => "msp-shanebot" }
+Bot.create!([
+  { username: "botusername" },
 ])
 
-Permission.create([
-  { :name => "can_view_users" },
-  { :name => "can_edit_users" },
-  { :name => "can_create_users" },
-  { :name => "can_view_permissions" },
-  { :name => "can_edit_permissions" },
-  { :name => "can_create_permissions" }
-])
+@admin = User.create!(username: 'admin',
+                      email: 'admin@admin.com',
+                      admin: true,
+                      password: 'welcome',
+                      password_confirmation: 'welcome')
 
-Rails.logger.info { "Created #{Bot.count} bots." }
-
-admin = User.create!(email: 'chem.drew@gmail.com',
-             admin: true,
-             password: 'welcome',
-             password_confirmation: 'welcome')
-
-Permission.all.each do |permission|
-  UserPermission.create(user_id: admin.id, permission_id: permission.id)
+Bot.all.each do |bot|
+  x = Permission.create!(action: "vote", bot: bot)
+  y = Permission.create!(action: "comment", bot: bot)
+  z = Permission.create!(action: "resteem", bot: bot)
+  [x,y,z].each do |perm|
+    UserPermission.create!(user_id: @admin.id, permission_id: perm.id)
+  end
 end
+
+Rails.logger.info { "Created #{Bot.count} bots, #{Permission.count} permissions, and #{User.count} users." }

@@ -1,27 +1,28 @@
 class UserPolicy < ApplicationPolicy
 
-  def index?
-    user ? user.can_view_users? : false
+  def is_admin?
+    user ? user.admin? : false
   end
 
-  def show?
-    user ? user.can_view_users? : false
+  def parse_url_allowed?
+    user ? true : false
   end
 
-  def edit?
-    user ? user.can_edit_users? : false
+  Bot.pluck(:username).each do |bot_name|
+    define_method "#{bot_name.gsub('-','_')}_vote_allowed?" do
+      user ? user.permissions.where(action: 'vote').map(&:bot).include?(Bot.find_by(username: bot_name)) : false
+    end
+    define_method "#{bot_name.gsub('-','_')}_comment_allowed?" do
+      user ? user.permissions.where(action: 'comment').map(&:bot).include?(Bot.find_by(username: bot_name)) : false
+    end
+    define_method "#{bot_name.gsub('-','_')}_resteem_allowed?" do
+      user ? user.permissions.where(action: 'resteem').map(&:bot).include?(Bot.find_by(username: bot_name)) : false
+    end
   end
 
-  def update?
-    user ? user.can_edit_users? : false
-  end
-
-  def new?
-    user ? user.can_create_users? : false
-  end
-
-  def create?
-    user ? user.can_create_users? : false
+  def verify_api_key
+    Rails.logger.info { "[UserPolicy] Verify Api Key -- User: #{user.username}, ProvidedApiKey: #{user.provided_api_key}, ActualApiKey: #{user.api_key}"}
+    user && user.api_key == user.reload.provided_api_key
   end
 
 end

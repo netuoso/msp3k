@@ -3,9 +3,9 @@ class HomeController < BaseController
   def index
   end
 
-  def users
-    authorize User
-    @users = User.all
+  def logout
+    sign_out(current_user)
+    redirect_to root_path
   end
 
 end

@@ -44,7 +44,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -59,11 +59,22 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "msp3k_#{Rails.env}"
+  config.action_mailer.default_url_options = { host: 'https://msp3k.com' }
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['MSP3K_SMTP_ADDDRESS'] || 'smtp.pobox.com',
+    port:                 587,
+    domain:               ENV['MSP3K_SMTP_DOMAIN'] || 'pobox.com',
+    user_name:            ENV['MSP3K_SMTP_USER'] || 'higrow@pobox.com',
+    password:             ENV['MSP3K_SMTP_PASSWORD'] || '^stwfl8ybs6ltc',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

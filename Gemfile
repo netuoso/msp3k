@@ -7,32 +7,40 @@ end
 
 gem 'rails', '~> 5.1.2'
 
-gem 'sqlite3'
-gem 'puma', '~> 3.7'
+gem 'thin'
 
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap-multiselect-rails'
 
 gem 'pundit'
 gem 'devise'
 gem 'devise-bootstrap-views'
 
+gem 'config'
 gem 'paper_trail'
+gem 'rails_admin'
+gem 'newrelic_rpm'
 
 gem 'radiator'
 gem 'steem_api'
 
+gem 'sucker_punch'
+
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug'
+  gem 'thin-rails'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'sqlite3'
 end
 
 group :production do
   gem 'pg'
+  gem 'puma', '~> 3.7'
 end
