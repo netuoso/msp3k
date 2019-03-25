@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### MSP3K
 
-Things you may want to cover:
+MSP3K is a User Management application for handling multiple users and bot accounts on the Steem blockchain. The application allows the admin to add users and bots, as well as individual permissions for each user+bot. Through the interface, users are able to use the bots they have been allowed access to and perform actions on the Steem blockchain such as voting, esteeming, or commenting.
 
-* Ruby version
+### System Requirements:
+- 1-2 GB RAM
+- i5+ CPU
 
-* System dependencies
+### Main Libraries:
+- Ruby on Rails
+- SuckerPunch
+- Radiator
+- Steem-Api
 
-* Configuration
+### To Setup:
+- `bundle update`
+- `bundle install`
+- `rails db:setup`
+- `rails server`
 
-* Database creation
+### To Access:
+- http://localhost:3000
 
-* Database initialization
+### Admin Info:
+- username: admin
+- password: welcome
+- url: http://localhost:3000/admin
 
-* How to run the test suite
+### Troubleshooting:
+- restart application if necessary after adding new bot accounts via admin
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### License:
+WTFPL
