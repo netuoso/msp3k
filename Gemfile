@@ -27,8 +27,8 @@ gem 'newrelic_rpm'
 gem 'radiator'
 gem 'steem_api'
 
-gem 'pg', group: :production
-gem 'rails_12factor', group: :production
+gem 'pg', '~> 0.20'
+gem 'rails_12factor'
 
 gem 'sucker_punch'
 gem 'thin-rails'
