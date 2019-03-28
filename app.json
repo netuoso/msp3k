@@ -12,6 +12,6 @@
   },
   "scripts": {
     "predeploy": "bundle exec bundle install --with production",
-    "postdeploy": "bundle exec rails db:setup"
+    "postdeploy": "bundle exec rails db:migrate && bundle exec rake db:seed"
   }
 }
