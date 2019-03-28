@@ -1,3 +1,5 @@
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/netuoso/msp3k)
+
 # README
 
 ### MSP3K
@@ -15,10 +17,12 @@ MSP3K is a User Management application for handling multiple users and bot accou
 - Steem-Api
 
 ### To Setup:
-- `bundle update`
 - `bundle install`
 - `rails db:setup`
 - `rails server`
+
+### To Setup Email (environment variables):
+- Edit MSP3K SMTP variables in `app.json`
 
 ### To Access:
 - http://localhost:3000

@@ -27,20 +27,9 @@ gem 'newrelic_rpm'
 gem 'radiator'
 gem 'steem_api'
 
+gem 'pg', group: :production
+gem 'rails_12factor', group: :production
+
 gem 'sucker_punch'
-
-group :development, :test do
-  gem 'pry-byebug'
-  gem 'thin-rails'
-end
-
-group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
-  gem 'puma', '~> 3.7'
-end
+gem 'thin-rails'
+gem 'sqlite3', group: :development

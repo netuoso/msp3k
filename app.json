@@ -1,0 +1,17 @@
+{
+  "name": "MSP3K Steem User Management App",
+  "description": "MSP3K is a User Management application for handling multiple users and bot accounts on the Steem blockchain. The application allows the admin to add users and bots, as well as individual permissions for each user+bot. Through the interface, users are able to use the bots they have been allowed access to and perform actions on the Steem blockchain such as voting, esteeming, or commenting.",
+  "repository": "https://github.com/netuoso/msp3k",
+  "logo": "https://i.imgur.com/5XIRmqo.png",
+  "keywords": ["minnowsupportproject","minnowsupport","msp3k","rails","ruby","steem","steemit","blockchain"],
+  "env": {
+		"MSP3K_SMTP_ADDDRESS": "john@test.com",
+		"MSP3K_SMTP_DOMAIN": "smtp.mailserver.com",
+		"MSP3K_SMTP_USER": "john",
+		"MSP3K_SMTP_PASSWORD": "johnSMTPpassword"
+  },
+  "scripts": {
+    "predeploy": "bundle exec bundle install --with production",
+    "postdeploy": "bundle exec rails db:setup"
+  }
+}
